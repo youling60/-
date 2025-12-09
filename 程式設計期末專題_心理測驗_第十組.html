@@ -1,0 +1,161 @@
+<!-- HTML程式碼 -->
+<!-- 網頁設定 -->
+<head>
+<meta charset="UTF-8">  <!-- 設定網頁的字元編碼，確保中文字能正確顯示 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- 設定網頁在行動裝置上的顯示方式，讓網頁寬度等於裝置螢幕的寬度，初始縮放比例為 100% -->
+</head>
+
+
+
+<!-- CSS程式碼 -->
+<!-- 網頁排版與美化 -->
+<style>
+body{
+display: flex;             /* 啟用彈性佈局 */
+justify-content: center;   /* 水平置中 */
+align-items: center;       /* 垂直置中 */
+text-align: center;        /* 使文字內容也水平置中 */
+min-height: 100vh;         /* 最小高度達到瀏覽器視窗可視高度的100% */
+font-size: 12px;           /* 設定文字大小為12 */
+color: #272727;            /* 設定文字顏色為深灰色 */
+background-image: url("https://farm66.static.flickr.com/65535/40702703503_6bcca68117_b.jpg");  /* 設定網頁的背景圖片 */
+    background-size: cover;        /* 讓圖片覆蓋整個背景 */
+    background-position: center;   /* 圖片置中 */
+    background-repeat: no-repeat;  /* 禁止圖片重複平鋪 */
+    background-attachment: fixed;  /* 捲動時背景圖片不會跟著移動 */
+}
+
+
+/* 設計出每個頁面半透明長方形 */
+#s, #q1, #q2, #q3, #q4, #q5, #food {
+background-color: rgba(250, 250, 250, 0.85);   /* 長方形背景為淺米白，透明度為85% */  
+border-radius: 12px;     /* 長方形四角為12象素的圓角 */
+padding: 35px;           /* 內邊距為35象素 */
+max-width: 480px;        /* 最大寬度為480象素 */
+width: 90vw;             /* 寬度為瀏覽器視窗寬度的90% */
+text-align: center;      /* 長方形內的文字水平置中 */
+}
+
+/* 設定按鈕樣式 */
+button{
+font-size: 20px;         /* 按鈕內的文字大小為20 */
+padding: 15px 20px;      /* 按鈕的內邊距上下為15像素，左右為20像素， */
+color: #272727;          /* 按鈕內的文字顏色為深灰色 */
+}
+</style>
+
+
+
+<!-- HTML程式碼 -->
+<!-- 心理測驗首頁 -->
+<div id="s">
+<h1>你在戀愛中是什麼台南小吃？</h1>    <!-- 標題 -->
+<button onclick="start()">開始測驗</button>    <!-- 按鈕，執行start函數 -->  
+</div>
+
+<!-- 心理測驗第一題 -->
+<div id="q1" style="display: none;">
+<h1>結束一天的工作走在台南小巷中的你遇見了一隻會說話的小貓，這個時候的你會選擇...?</h1>   <!-- 第一題題目 -->
+<button onclick="nextStep('1', 'q1', 'q2')">停下腳步聽他說話</button>   <!-- 選項1 -->
+<br><br>  <!-- 空2行 -->
+<button onclick="nextStep('2', 'q1', 'q2')">快步離開避免接觸</button>   <!-- 選項2 -->
+</div>
+
+<!-- 心理測驗第二題 -->
+<div id="q2" style="display: none;">
+<h1>快到家時你接到另一半打來的電話，他告訴你他非常想吃距離你家10分鐘路程遠的滷味攤，你會選擇...?</h1>   <!-- 第二題題目 -->
+<button onclick="nextStep('3', 'q2', 'q3')">反正不遠就繞去幫他買</button>  <!-- 選項3 -->
+<br><br>  <!-- 空2行 -->
+<button onclick="nextStep('4', 'q2', 'q3')">拒絕他的請求改天再吃</button>  <!-- 選項4 -->
+</div>
+
+<!-- 心理測驗第三題 -->
+<div id="q3" style="display: none;">
+<h1>回到家後發現另一半準備了你最喜歡的牛肉湯和白糖粿在等你，但其實你已經在外吃飽了，你會怎麼做...?</h1>   <!-- 第三題題目 -->
+<button onclick="nextStep('5', 'q3', 'q4')">給對方一個大大的擁抱，熱情的感謝他</button>  <!-- 選項5 -->
+<br><br>  <!-- 空2行 -->
+<button onclick="nextStep('6', 'q3', 'q4')">說明你已經吃飽，請他自行處理</button>  <!-- 選項6 -->
+</div>
+
+<!-- 心理測驗第四題 -->
+<div id="q4" style="display: none;">
+<h1>洗澡的時候發現沐浴乳跟洗髮精已經快用完了，你會選擇...?</h1>    <!-- 第四題題目 -->
+<button onclick="nextStep('7', 'q4', 'q5')">洗完澡跟另一半一起散步去買</button>  <!-- 選項7 -->
+<br><br>   <!-- 空2行 -->
+<button onclick="nextStep('8', 'q4', 'q5')">明天一下班就去買</button>  <!-- 選項8 -->
+</div>
+
+<!-- 心理測驗第五題 -->
+<div id="q5" style="display: none;">
+<h1>半夜時異性友人打電話來告知說他剛分手很難過，問你要不要陪他去黃金海岸，這時你的另一半在熟睡，你會選擇...?</h1>   <!-- 第五題題目 -->
+<button onclick="nextStep('9', 'q5', 'food')">說明你的不便，請他找別人陪他去</button>   <!-- 選項9 -->
+<br><br>      <!-- 空2行 -->
+<button onclick="nextStep('10', 'q5', 'food')">戴上另一半陪他去</button>   <!-- 選項10 -->
+</div>
+
+<!-- 心理測驗結果頁 -->
+<div id="food" style="display: none;">
+<h1>你在戀愛中是：</h1>                         <!-- 文字 -->
+<h1 id="result-title"></h1>                     <!-- 測驗結果 -->
+<h1 id="result-description"></h1>               <!-- 測驗結果說明 -->
+<button onclick="again()">重新測驗</button>     <!-- 重新測驗的按鈕 -->
+</div>
+
+
+
+<!-- JavaScript程式碼 -->
+<!-- 建立函數與物件 -->
+<script>
+const userAnswers = [];  /* 建立userAnswers陣列，儲存所有填答紀錄 */
+
+/* 定義一個名為start的函式 */
+function start(){
+document.getElementById("s").style.display = 'none';     /* 將首頁隱藏起來 */
+document.getElementById("q1").style.display = 'block';}  /* 將第一題顯示出來 */
+
+/* 定義一個名為nextStep的函式 */
+function nextStep(answer, hideId, showId) {
+userAnswers.push(answer);                                 /* 將答案push到userAnswers陣列，儲存答案 */
+document.getElementById(hideId).style.display = 'none';   /* 將當頁隱藏起來 */
+document.getElementById(showId).style.display = 'block';  /* 將下一頁顯示出來 */
+if (showId === 'food') {Result();}}                       /* 如果下一頁是food，則執行函數Result */
+
+/* 定義一個名為Result的函式 */
+function Result(){
+const answerKey = userAnswers.join('');                                         /* 將userAnswers陣列中所有答案連接成answerKey字串 */
+const resultIndex = resultMapping[answerKey];                                   /* 根據字串，到resultMapping物件中查找對應的結果編號 */
+const finalResult = results[resultIndex];                                       /* 根據編號，到results陣列取出對應的測驗結果 */
+document.getElementById('result-title').textContent = finalResult.title;        /* 將測驗結果填入結果頁的result-title */
+document.getElementById('result-description').textContent = finalResult.decs;}  /* 將測驗結果說明填入結果頁的result-description */
+
+/* 定義一個名為resultMapping的物件 */
+/* 將32種答案組合分別對應一種測驗結果，總共有八種結果 */
+const resultMapping = {
+"145810": 0, "14589": 0, "146710": 0, "146810": 0, 
+"135710": 1, "135810": 1, "13589": 1, "14579": 1, 
+"13579": 2, "145710": 2, "235710": 2, "245710": 2, 
+"23579": 3, "23589": 3, "24579": 3, "24589": 3, 
+"14679": 4, "14689": 4, "24679": 4, "24689": 4, 
+"13679": 5, "136710": 5, "235810": 5, "245810": 5, 
+"246810": 6, "246710": 6, "13689": 6, "136810": 6, 
+"23679": 7, "236710": 7, "23689": 7, "236810": 7};
+
+/* 定義一個名為results的物件 */
+/* 八種測驗結果與測驗結果的說明 */
+const results = [
+　　　　　　{ title: '牛肉湯', decs: '你在感情中是個行動派，當遇到喜歡的人，你會迅速做出反應，不喜歡拖泥帶水。你的愛熱情且真誠，從不吝嗇表達，並渴望一段充滿活力的關係。' },
+            { title: '虱目魚粥', decs: '你的愛情觀是溫和而成熟的，總是以一種細水長流的方式滋養關係。你樂於成為伴侶的支持者，擅長傾聽並提供情緒價值，讓對方感到舒適與安心。' },
+            { title: '白糖粿', decs: '你在關係中渴望親密與陪伴，並毫不保留地展現可愛的一面。你很享受與伴侶緊密相依的感覺，這讓你充滿能量。總是懷抱著對愛情的憧憬，期待兩人世界是純粹且美好的。'},
+            { title: '小卷米粉', decs: '你相信愛情應該是簡單且真實的，不喜歡玩弄心機或複雜的情感糾葛。你個性清爽，給予彼此適度的空間，追求一種「舒服就好」的狀態。' },
+            { title: '鱔魚意麵', decs: '你的愛情充滿了戲劇性與激情，愛恨分明，絕不含糊。追求刺激和激情的戀愛體驗，討厭平淡無味的關係。' },
+            { title: '麻糬', decs: '你的個性柔軟，在愛情中會變得黏人且親密。重視肢體接觸和浪漫的互動，渴望兩人關係像麻糬一樣緊密不可分。' },
+            { title: '刈包', decs: '你是關係中最可靠的後盾，擁有一顆極具包容力的心。總是溫柔地接納伴侶的一切，不輕易評判，願意給予支持。' },
+            { title: '水晶餃', decs: '你的心思透明且單純，傾向於把事情想得很簡單，不喜歡複雜的人際關係或爾虞我詐。你不會隱藏自己的情緒或意圖，是個誠實的伴侶。'}];
+
+/* 定義一個名為again的函式 */
+function again(){
+document.getElementById("food").style.display = 'none';  /* 將結果頁隱藏起來 */
+document.getElementById("s").style.display = 'block';    /* 將首頁顯示出來 */
+userAnswers.length = 0;}                                 /* 將userAnswers陣列的長度設定為0，清空所有答案 */
+</script>
+
